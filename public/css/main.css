@@ -1,31 +1,139 @@
 html,
 body {
-    background-color: lightblue;
+    background-color: #F7FAFC;
+    /* Soft neutral, AAA contrast */
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    color: #0A0A0A;
+    /* High contrast text */
+    line-height: 1.6;
+    font-size: 16px;
+    /* Accessible base size */
 }
 
-body {
-    nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
+nav {
+    background-color: #003366;
+    /* Deep blue */
+    padding: 15px 20px;
+}
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 
-            &:hover {
-                color: #0066cc;
-            }
-        }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+nav a:hover,
+nav a:focus {
+    color: #F2C100;
+    /* Gold accent */
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
     }
+
+    nav li {
+        margin-right: 0;
+    }
+}
+
+h1 {
+    font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: clamp(1.4rem, 2vw, 1.7rem);
+    color: #0F6B3A;
+    /* Accessible green */
+    margin-bottom: 15px;
+}
+
+.main-logo {
+    max-width: 300px;
+    width: 100%;
+    display: block;
+    margin: 20px auto;
+}
+
+main ul img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+main ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+main ul li {
+    background-color: #FFFFFF;
+    border: 2px solid #003366;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 1rem;
+}
+
+/* Mobile list layout */
+@media (max-width: 600px) {
+    main ul li {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    main ul img {
+        margin-bottom: 10px;
+    }
+}
+
+footer {
+    background-color: #003366;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 0.9rem;
+}
+
+.center {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
 }
