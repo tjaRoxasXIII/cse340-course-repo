@@ -1,3 +1,4 @@
+-- Organization Table
 CREATE TABLE organization (
     organization_id SERIAL PRIMARY KEY,
     name            VARCHAR(150) NOT NULL,
@@ -6,12 +7,14 @@ CREATE TABLE organization (
     logo_filename   VARCHAR(255) NOT NULL
 );
 
+-- Sample Organization Data
 INSERT INTO organization (name, description, contact_email, logo_filename)
 VALUES
 ('BrightFuture Builders', 'A nonprofit focused on improving community infrastructure through sustainable construction projects.', 'info@brightfuturebuilders.org', 'brightfuture-logo.png'),
 ('GreenHarvest Growers', 'An urban farming collective promoting food sustainability and education in local neighborhoods.', 'contact@greenharvest.org', 'greenharvest-logo.png'),
 ('UnityServe Volunteers', 'A volunteer coordination group supporting local charities and service initiatives.', 'hello@unityserve.org', 'unityserve-logo.png');
 
+-- Project Table
 CREATE TABLE project (
     project_id      SERIAL PRIMARY KEY,
     organization_id INTEGER NOT NULL REFERENCES organization(organization_id),
@@ -21,7 +24,7 @@ CREATE TABLE project (
     date            DATE NOT NULL
 );
 
-
+-- Sample Project Data
 INSERT INTO project (organization_id, title, description, location, date) VALUES
 (1, 'Solar-Powered Bus Stop Installation',
  'Installing shaded, solar-powered bus shelters to improve community transportation access.',
@@ -82,3 +85,48 @@ INSERT INTO project (organization_id, title, description, location, date) VALUES
 (3, 'Veteran Support Appreciation Day',
  'Organizing a community event offering resources, recognition, and support for veterans.',
  'Winter Haven, FL', '2026-11-06');
+
+ -- Category Table
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name        VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Category / Project Join Table
+CREATE TABLE project_category (
+    project_id  INTEGER NOT NULL REFERENCES project(project_id),
+    category_id INTEGER NOT NULL REFERENCES category(category_id),
+    PRIMARY KEY (project_id, category_id)
+);
+
+-- Category Data
+INSERT INTO category (name) VALUES
+('Community Development'),
+('Environmental Sustainability'),
+('Human Services');
+
+
+-- Update existing projects with categories
+-- BrightFuture Builders (Org 1)
+INSERT INTO project_category (project_id, category_id) VALUES
+(1, 1), (1, 2),
+(2, 1),
+(3, 1), (3, 2),
+(4, 1),
+(5, 1), (5, 2);
+
+-- GreenHarvest Growers (Org 2)
+INSERT INTO project_category (project_id, category_id) VALUES
+(6, 2), (6, 3),
+(7, 2),
+(8, 2),
+(9, 2), (9, 3),
+(10, 2);
+
+-- UnityServe Volunteers (Org 3)
+INSERT INTO project_category (project_id, category_id) VALUES
+(11, 3),
+(12, 3), (12, 1),
+(13, 3),
+(14, 3),
+(15, 3), (15, 1);
