@@ -17,11 +17,13 @@ VALUES
 -- Project Table
 CREATE TABLE project (
     project_id      SERIAL PRIMARY KEY,
-    organization_id INTEGER NOT NULL REFERENCES organization(organization_id),
+    organization_id INTEGER NOT NULL,
     title           VARCHAR(200) NOT NULL,
     description     TEXT NOT NULL,
     location        VARCHAR(255) NOT NULL,
-    date            DATE NOT NULL
+    date            DATE NOT NULL,
+    CONSTRAINT fk_project_org FOREIGN KEY (organization_id)
+        REFERENCES organization(organization_id)
 );
 
 -- Sample Project Data
@@ -94,9 +96,13 @@ CREATE TABLE category (
 
 -- Category / Project Join Table
 CREATE TABLE project_category (
-    project_id  INTEGER NOT NULL REFERENCES project(project_id),
-    category_id INTEGER NOT NULL REFERENCES category(category_id),
-    PRIMARY KEY (project_id, category_id)
+    project_id  INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+    CONSTRAINT pk_project_category PRIMARY KEY (project_id, category_id),
+    CONSTRAINT fk_pc_project FOREIGN KEY (project_id)
+        REFERENCES project(project_id),
+    CONSTRAINT fk_pc_category FOREIGN KEY (category_id)
+        REFERENCES category(category_id)
 );
 
 -- Category Data
@@ -104,7 +110,6 @@ INSERT INTO category (name) VALUES
 ('Community Development'),
 ('Environmental Sustainability'),
 ('Human Services');
-
 
 -- Update existing projects with categories
 -- BrightFuture Builders (Org 1)
