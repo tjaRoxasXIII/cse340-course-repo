@@ -5,7 +5,7 @@
         <ul>
             <% projects.forEach(project => { %>
                 <li>
-                    <strong><%= project.date.toLocaleDateString() %>:</strong> <%= project.title %> (<%= project.organization_name %>)
+                    <strong><%= project.date.toLocaleDateString() %>:</strong> <a href="/project/<%= project.project_id %>"><%= project.title %></a> (<a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a>)
                 </li>
             <% }); %>
         </ul>
