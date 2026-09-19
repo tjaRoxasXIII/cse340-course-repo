@@ -18,7 +18,7 @@ const showCategoryDetailsPage = async (req, res) => {
     console.log("Category result:", category);
     console.log("Projects result:", projects);
 
-    res.render('category-details', { title, category, projects});
+    res.render('category', { title, category, projects});
 
 };
 
