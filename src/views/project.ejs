@@ -7,7 +7,7 @@
         <h2>Project Details</h2>
         <p><%= projectDetails.description %></p>
         <p><strong>Date:</strong> <%= projectDetails.date.toLocaleDateString() %></p>
-        <p><strong>Location:</strong> <%= new Date(projectDetails.location).toLocaleDateString() %></p>
+        <p><strong>Location:</strong> <%= projectDetails.location %></p>
         <p><strong>Organization:</strong> <a href="/organization/<%= projectDetails.organization_id %>"><%= projectDetails.organization_name %></a></p>
         <h3>Category Tag(s)</h3>
         
