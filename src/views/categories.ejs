@@ -4,7 +4,7 @@
     <h2>Here are the service categories:</h2>
     <ul>
         <% categories.forEach(category=> { %>
-            <li><strong><%= category.name %></strong></li>
+            <li><strong><a href="/category/<%= category.category_id %>"><%= category.name %></a></strong></li>
         <% }); %>
     </ul>
 </main>

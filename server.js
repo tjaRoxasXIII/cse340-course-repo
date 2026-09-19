@@ -22,6 +22,9 @@ app.set('view engine', 'ejs');
 // Tell Express where to find your templates
 app.set('views', path.join(__dirname, 'src/views'));
 
+// Use the imported router to handle routes
+app.use(router);
+
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -38,9 +41,6 @@ app.use((req, res, next) => {
     res.locals.NODE_ENV = NODE_ENV;
     next();
 });
-
-// Use the imported router to handle routes
-app.use(router);
 
 // Catch-all route for 404 errors
 app.use((req, res, next) => {
